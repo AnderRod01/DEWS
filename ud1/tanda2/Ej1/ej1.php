@@ -12,6 +12,20 @@
         return $nuevaCadena;
     }
 
+    function cifradoFichero($cadena, $nomFich){
+        $handle = fopen("./utils/".$nomFich, "r");
+        while (!feof($handle)) {
+            $linea = fgets ($handle);
+        }
+        fclose($handle);
+        $nuevaCadena ="";
+        for ($i=0; $i<strlen($cadena);$i++){
+            $char = $cadena[$i];
+            $nuevaCadena.= $linea[ord($char)- ord('A')];
+        }
+        return $nuevaCadena;
+    }
+
     define('N_DESPL', [3, 5, 10]);
     $GLOBALS['radioSel'] = false;
 ?>
@@ -47,7 +61,7 @@
                 </td>
                 <td>
                     <?php
-                        if (isset($_POST['cesar']) && $_POST['txtTextoaCifrar'] == ""){
+                        if (isset($_POST['cesar']) || isset($_POST['sust']) && $_POST['txtTextoaCifrar'] == ""){
                             echo "<p>* Debes introducir un texto</p>";
                         }
                     ?>
@@ -87,21 +101,6 @@
             </tr>
             <tr>
                 <td>
-                    <?php
-                        if (isset($_POST['cesar'])){
-                            $cadena = $_POST['txtTextoaCifrar'];
-                            if ($cadena != "" && isset( $_POST['despl'])){
-                                $despl = $_POST['despl'];
-                                $nuevaCadena = cifradoCesar(strtoupper($cadena), $despl);
-                                echo '<strong>'.$nuevaCadena.'</strong>';
-                            }
-                            
-                        }
-                    ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <label for="ficheroClave">Fichero de clave</label>
                 </td>
                 <td>
@@ -116,7 +115,7 @@
                                 foreach($files as $f){
                                     $urlFile=$urlDir.'/'.$f;
                                     if(is_file($urlFile) and $f!='index.php' and strpos($f,'.txt')!=false){
-                                        $txtHtml .= "<option value=fich".$n.">".$f."</option>";
+                                        $txtHtml .= "<option>".$f."</option>";
                                         $n++;
                                     }
                                 }
@@ -127,6 +126,28 @@
                 </td>
                 <td>
                     <input type="submit" name="sust" value="CIFRADO POR SUSTITUCION">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php
+                        if (isset($_POST['cesar'])){
+                            $cadena = $_POST['txtTextoaCifrar'];
+                            if ($cadena != "" && isset( $_POST['despl'])){
+                                $despl = $_POST['despl'];
+                                $nuevaCadena = cifradoCesar(strtoupper($cadena), $despl);
+                                echo '<strong>Texto Cifrado: '.$nuevaCadena.'</strong>';
+                            }
+                            
+                        }else if (isset ($_POST['sust'])){
+                            $cadena = $_POST['txtTextoaCifrar'];
+                            if ($cadena != ""){
+                                $nomFich = $_POST['ficheroClave'];
+                                $nuevaCadena = cifradoFichero(strtoupper($cadena), $nomFich);
+                                echo '<strong>Texto Cifrado: '.$nuevaCadena.'</strong>';
+                            }
+                        }
+                    ?>
                 </td>
             </tr>
         </table>
