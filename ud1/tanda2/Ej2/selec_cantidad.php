@@ -14,8 +14,6 @@
                     {
                         $n++;
                     }
-                    
-                    
                 }
             }
         }
@@ -31,7 +29,7 @@
     <title>Cantidad</title>
 </head>
 <body>
-    <form enctype="multipart/form-data" action="./files/eval_imag.php" method="post">
+    <form enctype="multipart/form-data" action="./php/eval_imag.php" method="post">
         <label for="selCantidad">¿Cuántas imágenes deseas ver?</label>
         <select name="selCantidad" id="selCantidad">
             <?php
