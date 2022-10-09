@@ -1,0 +1,3 @@
+Hugo;dragonsi;10
+Daniel;leonfucsia;25
+Paula;famosaentwitter;50

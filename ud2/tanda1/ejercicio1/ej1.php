@@ -44,8 +44,6 @@
             unset($_SESSION['lstNombres'][$i]);
         }
     }
-
-    
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +79,6 @@
     </form>
     <?php
         mostrarNombres();
-
         echo "<a href='?logout'>Cerrar sesion (se perderan los datos guardados)</a>"
     ?>
 </body>
