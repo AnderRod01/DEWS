@@ -1,8 +1,8 @@
-hamburguesa;segundo;10
-sopa;primero;7
-ensalada;primero;6.5
-pasta;segundo;15
-tarta;postre;5
-natillas;postre;7
-refresco;bebida;3
-vino;bebida;5
+hamburguesa;Segundo;10
+sopa;Primero;7
+ensalada;Primero;6
+pasta;Segundo;15
+tarta;Postre;5
+natillas;Postre;7
+refresco;Bebida;3
+vino;Bebida;5
