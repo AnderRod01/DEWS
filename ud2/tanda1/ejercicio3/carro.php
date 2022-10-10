@@ -22,7 +22,6 @@
             
             echo "<td><select name='sel".$key."'>";
             for ($i=0; $i<=10;$i++){
-                var_dump($i);
                 echo "<option value='".$i."'>".$i."</option>";
             }
             echo "</select></td>";
@@ -48,20 +47,7 @@
             }
         }
     }
-
-    if(isset($_POST['aniadir'])){
-        foreach (LSTPRODUCTOS as $key => $value) {
-            if (isset($_POST[$key]) && $_POST['sel'.$key] != 0){
-                $_SESSION['lstPedidos'][$key] += $_POST['sel'.$key];
-            }
-        }
-    }
-
-    if (isset($_POST['vaciar'])){
-        unset($_SESSION['lstPedidos']);
-        $_SESSION['lstPedidos'] = ['prod1' => 0, 'prod2' => 0, 'prod3' => 0, 'prod4' => 0];
-    }
-
+    
     function resumen (){
         if (isset($_POST['compra'])){
             echo "<h2>Tu pedido</h2><ul>";
@@ -80,6 +66,20 @@
         }
     }
 
+
+
+    if(isset($_POST['aniadir'])){
+        foreach (LSTPRODUCTOS as $key => $value) {
+            if (isset($_POST[$key]) && $_POST['sel'.$key] != 0){
+                $_SESSION['lstPedidos'][$key] += $_POST['sel'.$key];
+            }
+        }
+    }
+
+    if (isset($_POST['vaciar'])){
+        unset($_SESSION['lstPedidos']);
+        $_SESSION['lstPedidos'] = ['prod1' => 0, 'prod2' => 0, 'prod3' => 0, 'prod4' => 0];
+    }
 ?>
 
 <!DOCTYPE html>
