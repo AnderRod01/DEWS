@@ -2,9 +2,10 @@
     include_once 'config.php';
     session_start();
 
+    $_SESSION['paginaActual'] = "index";
+
     $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
     mysqli_select_db($conn, DB_DATABASE);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,18 +16,25 @@
     <link rel="stylesheet" href="css/style.css">
     <title><?php echo NOMBREFORO ?></title>
 </head>
+<style>
+    img{
+        width: 150px;
+        object-fit:cover;
+    }
+</style>
 <body>
     <div id="header">
         <h1><?php echo NOMBREFORO ?></h1>
     </div>
     <div id="menu">
-        <a href="cabecera.php">Home</a>
+        <a href="index.php">Home</a>
         <?php
             if(isset($_SESSION['USERNAME']) == TRUE) {
                 echo "<a href='logout.php'>Logout</a>";
             }
             else {
                 echo "<a href='login.php'>Login</a>";
+                $_SESSION['paginaActual'] = "login";
             }
         ?>
         <a href="newitem.php">New Item</a>
@@ -36,11 +44,14 @@
             <?php require_once("bar.php"); ?>
         </div>
         <div id="main">  
-            <?php require_once("index2.php");?>
+            <?php
+                require_once("listaItems.php");
+                require_once("login.php")  
+            ?>
         </div>
     </div>
     <div>
-
+        
     </div>
 </body>
 </html>

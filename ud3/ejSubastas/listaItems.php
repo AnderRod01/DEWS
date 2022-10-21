@@ -36,7 +36,7 @@
         if($row['imagen']== null)
             echo "<tr><td>NO IMAGEN</td>";
         else
-            echo "<tr><td>".$row['imagen']."</td>";  //poner imagenes
+            echo "<tr><td><img src='./imagenes/".$row['imagen'].".jpg'></td>";  //poner imagenes
 
         echo "<td>".$row['nombre']."</td>"; //nombre, sera un enlace
         
