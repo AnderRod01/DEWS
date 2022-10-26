@@ -1,10 +1,11 @@
 <?php
-    const DB_HOST="localhost";
-    const DB_USER="root";
-    const DB_PASS="";
-    const DB_DATABASE="ud03";
+    define( "DB_HOST", "localhost");
+    define ("DB_USER", "root");
+    define ("DB_PASS", "");
+    define ("db_DATABASE", "ud03");
+    
+    define ("MONEDA", "€");
+    define ("NOMBREFORO", "SUBASTAS GASTA AQUI");
+    define ("RUTA", "http://".$_SERVER["SERVER_NAME"]."/DEWS/ud3/ejSubastas/");
 
-    const MONEDA = "€";
-    const NOMBREFORO = "SUBASTAS GASTA AQUI";
-    const RUTA="";
 ?>
