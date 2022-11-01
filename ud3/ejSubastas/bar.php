@@ -1,4 +1,6 @@
 <?php
+    include_once 'config.php';
+    $conn = conexion();
     $catsql = "SELECT * FROM categorias ORDER BY categoria ASC;";
     $catresult = mysqli_query($conn,$catsql);
 
