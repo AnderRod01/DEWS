@@ -1,10 +1,10 @@
 <?php
     include 'header.php';
-    if(!isset($_SESSION['uid']) || !isset($_GET['idUser']) || !isset($_GET['idArt']) || $_SESSION['uid']!=$_GET['idUser']){
+    if(!isset($_SESSION['uid']) || !isset($_GET['idUser']) || !isset($_GET['idItem']) || $_SESSION['uid']!=$_GET['idUser']){
         header("Location:index.php");
     }
     
-    $item = getItem($link, $_GET['idArt']);
+    $item = getItem($link, $_GET['idItem']);
     
     if(isset($_POST['submitBajarP'])){
         if(isset($_POST['cant'])){
@@ -58,9 +58,9 @@
         }
     }
     
-    $item = getItem($link, $_GET['idArt']);
-    $imagenes = getImagenesItem($link, $_GET['idArt']);
-    $enlace = $_SERVER['PHP_SELF']."?idArt=".$item['id']."&idUser=".$_SESSION['uid'];
+    $item = getItem($link, $_GET['idItem']);
+    $imagenes = getImagenesItem($link, $_GET['idItem']);
+    $enlace = $_SERVER['PHP_SELF']."?idItem=".$item['id']."&idUser=".$_SESSION['uid'];
     
     
     

@@ -62,7 +62,7 @@
     }
 
     /**
-     * Función para obtener el ID de usuaario mediante el email
+     * Función para obtener el ID de usuario mediante el email
      */
     function getIdUsuarioEmail($mail){
         global $con;

@@ -1,6 +1,6 @@
 <?php
     /**
-     * Pagina encargada crear la estructura, mostrar la cabecera con el titulo, el mehnu, 
+     * Pagina encargada crear la estructura, mostrar la cabecera con el titulo, el menu, 
      * la barra de tareas y abrir la etiqueta del div main, para poder insertar contenido en el contenedor main 
      */
     //Iniciamos session en la aplicación, si existe la recupera
