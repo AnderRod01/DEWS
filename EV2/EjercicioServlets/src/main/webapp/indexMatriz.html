@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Matrices</title>
+</head>
+<body>
+		<form action="servletIntroCeldas" method='post'>
+            <h1>Dimensiones de la matriz</h1>
+            <table>
+                <tr>
+                    <td>
+                        <label for="txtFilas">Filas:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="txtFilas" id="txtFilas" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="txtColumnas">Columnas:</label></td>
+                    <td>
+                        <input type="text" name="txtColumnas" id="txtColumnas" value="" />
+                    </td>
+                </tr>
+            </table>
+            <label style='padding:10px 0'><input type="checkbox" name="chkFondo" value="true" />&nbsp;Gris de fondo</label>
+            <input type="submit" value="Generar tabla" name="enviar" />
+        </form>
+</body>
+</html>
