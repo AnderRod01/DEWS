@@ -34,6 +34,7 @@ public class ServletLibros extends HttpServlet {
 			session.invalidate();
 			session = null;
 		}
+		
 		if (session == null) {
 			session = request.getSession(true);
 			session.setAttribute("seleccionados", listaSel);
@@ -42,10 +43,10 @@ public class ServletLibros extends HttpServlet {
 			listaSel = (ArrayList<String>) session.getAttribute("seleccionados");
 			String libroSel = request.getParameter("libro");
 			
-			if(listaSel.contains(libroSel)){
-				err ="Ya has elegido " + libroSel; 
+			if(!listaSel.contains(libroSel) && request.getParameter("agregar")!=null){
+				 listaSel.add(libroSel);
 			}else {
-				listaSel.add(libroSel);
+				err ="Ya has elegido " + libroSel;
 			}
 		}
 		
@@ -76,10 +77,14 @@ public class ServletLibros extends HttpServlet {
         out.print("<select name='libro'>");
         
         for (String libro:libros) {
-        	out.print("<option value ='"+libro+"'>" + libro + "</option>");
+        	if(request.getParameter("agregar") != null && request.getParameter("libro").equals(libro))
+        		out.print("<option value ='"+libro+"' selected>" + libro + "</option>");
+        	else
+        		out.print("<option value ='"+libro+"'>" + libro + "</option>");
+
         }
         out.print("</select>");
-        out.print("<input type='submit' value='AGREGAR'>");
+        out.print("<input type='submit' name='agregar' value='AGREGAR'>");
         
         ArrayList <String> listaSel = (ArrayList<String>) session.getAttribute("seleccionados");
         
