@@ -8,6 +8,7 @@ content_assist_parameters_foreground=236,236,238
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
 eclipse.preferences.version=1
+editor_folding_enabled=false
 java_bracket=216,216,216
 java_comment_task_tag=204,223,50
 java_default=248,248,242
