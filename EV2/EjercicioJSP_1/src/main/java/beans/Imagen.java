@@ -32,8 +32,4 @@ public class Imagen {
 	public long getTamanio() {
 		return tamanio;
 	}
-	public static void main(String[] args) {
-		Imagen i= new Imagen(null, null, 8499106);
-		System.out.println(i.tamanioDesglosado());
-	}
 }
