@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%! 
+<%!
 	final String CARPETA_IMG = "img";	
 
 	private ArrayList<Imagen> imagenesDeCarpeta (String nombreCarpeta){
@@ -23,12 +23,9 @@
 	}
 	
 %>
+
 <%
 	final ArrayList<Imagen> LISTA_IMAGENES = imagenesDeCarpeta(CARPETA_IMG);
-
-	
-
-
 %>
 
 <!DOCTYPE html>
