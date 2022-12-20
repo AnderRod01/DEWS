@@ -48,7 +48,7 @@
 		%>
 		</select>
         <span>
-            Tamaño:
+            TamaÃ±o:
             <label><input type="radio" name="tamanio" value="300" checked>300px</label>
             <label><input type="radio" name="tamanio" value="400">400px</label>
             <label><input type="radio" name="tamanio" value="500">500px</label>
@@ -59,7 +59,7 @@
 			
 			if(request.getParameter("verImagen") != null){
 				Imagen imagen =  LISTA_IMAGENES.get(Integer.parseInt(request.getParameter("imagenes")));
-				out.print("<p><b>TAMAÑO:	</b>" + imagen.tamanioDesglosado() + "</p>");
+				out.print("<p><b>TAMAï¿½O:	</b>" + imagen.tamanioDesglosado() + "</p>");
 				
 				String imagenSeleccionada = imagen.getRuta();
 				out.print("<img src='" + imagenSeleccionada +"' width='" + request.getParameter("tamanio") +"'>");
