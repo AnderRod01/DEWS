@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>00Ejemplos</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <resource-ref>
+	<description>DB Connection</description>
+	<res-ref-name>jdbc/poolSubastasDB</res-ref-name>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+  </resource-ref>
+  
+  <servlet>
+  		<servlet-name>ServletConsultaBD</servlet-name>
+  		<servlet-class>servlets.ServletConsultaBD</servlet-class>
+  </servlet>
+  <servlet>
+  		<servlet-name>ServletPoolConexiones</servlet-name>
+  		<servlet-class>servlets.ServletPoolConexiones</servlet-class>
+  </servlet>
+    <servlet>
+  		<servlet-name>ServletPoolConexionesBasic</servlet-name>
+  		<servlet-class>servlets.ServletPoolConexionesBasic</servlet-class>
+  </servlet>
+  <servlet>
+  		<servlet-name>ServletUpdate</servlet-name>
+  		<servlet-class>servlets.ServletUpdate</servlet-class>
+  </servlet>
+    <servlet>
+  		<servlet-name>ServletSelects</servlet-name>
+  		<servlet-class>servlets.ServletSelects</servlet-class>
+  </servlet>
+  <servlet>
+  		<servlet-name>ServletPreparedStatement</servlet-name>
+  		<servlet-class>servlets.ServletPreparedStatement</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  		<servlet-name>ServletConsultaBD</servlet-name>
+  		<url-pattern>/ServletConsultaBD</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  		<servlet-name>ServletPoolConexiones</servlet-name>
+  		<url-pattern>/ServletPoolConexiones</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+  		<servlet-name>ServletPoolConexionesBasic</servlet-name>
+  		<url-pattern>/ServletPoolConexionesBasic</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  		<servlet-name>ServletUpdate</servlet-name>
+  		<url-pattern>/ServletUpdate</url-pattern>
+  </servlet-mapping>
+      <servlet-mapping>
+  		<servlet-name>ServletSelects</servlet-name>
+  		<url-pattern>/ServletSelects</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  		<servlet-name>ServletPreparedStatement</servlet-name>
+  		<url-pattern>/ServletPreparedStatement</url-pattern>
+  </servlet-mapping>
+</web-app>
