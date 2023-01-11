@@ -224,6 +224,26 @@ public class GestorBD {
             st.setString(3, autor.getNacionalidad());
             
             st.executeUpdate();
+
+
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.err.println("Error en metodo insertarAutor: " + ex);
+        }
+        
+        return id;
+    }
+    
+    public String nombreAutor(int id) {
+    	String nombre = "";
+    	
+    	String sql = "SELECT nombre FROM autor WHERE id = ?";
+        try {
+            Connection con = dataSource.getConnection();
+            PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            st.setInt(1, id);
+            st.executeUpdate();
             
             ResultSet rs = st.getGeneratedKeys();
             if(rs.next()){
@@ -234,10 +254,34 @@ public class GestorBD {
             st.close();
             con.close();
         } catch (SQLException ex) {
-            System.err.println("Error en metodo insertarAutor: " + ex);
+            System.err.println("Error en metodo nombreAutor: " + ex);
         }
         
-        return id;
+        return nombre;
     }
     
+    public boolean prestarLibro(int id) {
+    	String sql = "INSERT INTO prestamo(fecha, idlibro) "
+                + " VALUES(NOW(), ?)";
+    	 try {
+             Connection con = dataSource.getConnection();
+             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+             st.setInt(1, id);
+             
+             st.executeUpdate();
+             ResultSet rs = st.getGeneratedKeys();
+             if(rs.next()){
+                 id = rs.getInt(1);
+             }
+             rs.close();
+             st.close();
+             con.close();
+         } catch (SQLException ex) {
+             System.err.println("Error en metodo insertarAutor: " + ex);
+             return false;
+         }
+         return true;
+
+    }
 }

@@ -1,19 +1,10 @@
 content_assist_completion_replacement_background=200,200,0
-<<<<<<< HEAD
-content_assist_completion_replacement_foreground=170,0,0
-=======
 content_assist_completion_replacement_foreground=126,0,0
->>>>>>> 2a821364adacd24703ae9ad7613038a618cc0518
 content_assist_disabled_computers=org.eclipse.jdt.ui.textProposalCategory\u0000org.eclipse.jdt.ui.javaPostfixProposalCategory\u0000org.eclipse.jdt.ui.javaAllProposalCategory\u0000org.eclipse.jdt.ui.javaTypeProposalCategory\u0000org.eclipse.jdt.ui.javaNoTypeProposalCategory\u0000org.eclipse.jdt.ui.javaChainProposalCategory\u0000
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.lang.Appendable"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/></lhs><lhs name\="java.io.Closeable"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/><rhs name\="java.io.FileReader"/></lhs><lhs name\="java.lang.AutoCloseable"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/><rhs name\="java.io.FileReader"/></lhs><lhs name\="java.io.Flushable"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/></lhs><lhs name\="java.io.Writer"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/></lhs><lhs name\="java.io.BufferedWriter"><rhs name\="java.io.BufferedWriter"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.RandomAccess"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.AbstractList"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.AbstractCollection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.ArrayList"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Readable"><rhs name\="java.io.FileReader"/></lhs><lhs name\="java.io.Reader"><rhs name\="java.io.FileReader"/></lhs></history>
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.lang.Appendable"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/></lhs><lhs name\="java.io.Closeable"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/><rhs name\="java.io.FileReader"/></lhs><lhs name\="java.lang.AutoCloseable"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/><rhs name\="java.io.FileReader"/></lhs><lhs name\="java.io.Flushable"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/></lhs><lhs name\="java.io.Writer"><rhs name\="java.io.BufferedWriter"/><rhs name\="java.io.FileWriter"/></lhs><lhs name\="java.io.BufferedWriter"><rhs name\="java.io.BufferedWriter"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.RandomAccess"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.AbstractList"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.AbstractCollection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.ArrayList"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Readable"><rhs name\="java.io.FileReader"/></lhs><lhs name\="java.io.Reader"><rhs name\="java.io.FileReader"/></lhs><lhs name\="beans.Autor"><rhs name\="beans.Autor"/></lhs></history>
 content_assist_number_of_computers=20
-<<<<<<< HEAD
-content_assist_parameters_background=46,46,46
-content_assist_parameters_foreground=237,237,237
-=======
 content_assist_parameters_background=31,31,35
 content_assist_parameters_foreground=236,236,238
->>>>>>> 2a821364adacd24703ae9ad7613038a618cc0518
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
 eclipse.preferences.version=1
@@ -33,11 +24,7 @@ java_multi_line_comment=117,113,94
 java_operator=216,216,216
 java_single_line_comment=117,113,94
 java_string=230,219,116
-<<<<<<< HEAD
-matchingBracketsColor=245,245,245
-=======
 matchingBracketsColor=244,244,245
->>>>>>> 2a821364adacd24703ae9ad7613038a618cc0518
 org.eclipse.jdt.internal.ui.navigator.layout=2
 org.eclipse.jdt.internal.ui.navigator.librariesnode=true
 org.eclipse.jdt.ui.formatterprofiles.version=21
@@ -137,11 +124,7 @@ semanticHighlighting.parameterVariable.italic=false
 semanticHighlighting.parameterVariable.strikethrough=false
 semanticHighlighting.parameterVariable.underline=false
 semanticHighlighting.restrictedKeywords.bold=false
-<<<<<<< HEAD
-semanticHighlighting.restrictedKeywords.color=173,91,24
-=======
 semanticHighlighting.restrictedKeywords.color=128,68,18
->>>>>>> 2a821364adacd24703ae9ad7613038a618cc0518
 semanticHighlighting.staticField.bold=false
 semanticHighlighting.staticField.color=239,192,144
 semanticHighlighting.staticField.enabled=true

@@ -1,4 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.LinkedList"%>
+<%@page import="beans.Autor"%>
+<%@page import="beans.Libro"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -25,6 +28,15 @@
         Nacionalidad: <input type="text" name="nacionalidad"><br>
 		<input type="submit" value="Añadir" name="aniadir">
 	</form>
+	
+	<c:if test="${librosAutor.size() > 0}">
+            <h1>Libros de ${autor}</h1>
+            <ul>
+                <c:forEach items="${librosAutor}" var="libro">
+                    <li><a href="<%=getServletContext().getContextPath()%>/control?prestar=${libro.getId()}">${libro.getTitulo()}</a></li>
+                </c:forEach>
+            </ul>
+    </c:if>
 	
 </body>
 </html>
