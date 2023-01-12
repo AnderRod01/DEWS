@@ -4,6 +4,24 @@
 <%@page import="beans.Libro"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+	LinkedList<Autor> autores = (LinkedList<Autor>) request.getAttribute("autores");
+	
+	if (autores == null) {
+	    response.sendRedirect(getServletContext().getContextPath() + "/ServletAutores");
+	}
+
+	pageContext.setAttribute("autores", autores);
+	
+	LinkedList<Libro> librosAutor = (LinkedList<Libro>) request.getAttribute("librosAutor");
+    String autor = (String) request.getAttribute("autor");
+    if (librosAutor == null) {
+        librosAutor = new LinkedList();
+    }
+
+    pageContext.setAttribute("librosAutor", librosAutor);
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +29,51 @@
 <title>Autores</title>
 </head>
 <body>
-<%-- El parámetro autores se encuentran el ambito de sesión --%>
-    <c:if test="${autores == null}">
-        <jsp:forward page="ServletAutores"/>
-    </c:if>
+<c:if test="${autores.size() > 0}">
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Nacionalidad</th>
+                    <th>Ver libros</th>
+                </tr>
 
-	<h1>Lista de Autores</h1>
-	<table>
-		
-	</table>
-	
+                <c:forEach items="${autores}" var="autor">
+                    <tr>
+                        <td>${autor.getNombre()}</td>
+                        <td><fmt:formatDate value="${autor.getFechanac()}" pattern='yyyy/MM/dd'/></td>
+                        <td>${autor.getNacionalidad()}</td>
+                        <td><a href='<%=getServletContext().getContextPath()%>/control?autor=${autor.getId()}'>Ver</a></td>
+                    </tr>
+                </c:forEach>
+
+            </table>
+        </c:if>
+
+	<%-- <c:choose>
+		<c:when test="${autores.size() > 0}">
+			<h1>Lista de Autores</h1>
+	        <table>
+	            <tr>
+	                <th>Nombre</th>
+	                <th>Fecha de nacimiento</th>
+	                <th>Nacionalidad</th>
+	                <th>Ver libros</th>
+	            </tr>
+	            <c:forEach items="${autores}" var="autor">
+	                <tr>
+	                    <td>${autor.getNombre()}</td>
+	                    <td><fmt:formatDate value="${autor.getFechanac()}" pattern='yyyy/MM/dd'/></td>
+	                    <td>${autor.getNacionalidad()}</td>
+	                    <td><a href='<%=getServletContext().getContextPath()%>/ServletAutores?autor=${autor.getId()}'>Ver</a></td>
+	                </tr>
+	            </c:forEach>
+	        </table>
+		</c:when>
+		<c:otherwise>
+			<h3>No existe ningun autor</h3>
+		</c:otherwise>
+	</c:choose> --%>
 	<h1>Añadir Autor</h1>
 	<form>
 		Nombre: <input type="text" name="nombre"> <br>
@@ -33,7 +86,7 @@
             <h1>Libros de ${autor}</h1>
             <ul>
                 <c:forEach items="${librosAutor}" var="libro">
-                    <li><a href="<%=getServletContext().getContextPath()%>/control?prestar=${libro.getId()}">${libro.getTitulo()}</a></li>
+                    <li><a href="<%=getServletContext().getContextPath()%>/ServletAutores?prestar=${libro.getId()}">${libro.getTitulo()}</a></li>
                 </c:forEach>
             </ul>
     </c:if>

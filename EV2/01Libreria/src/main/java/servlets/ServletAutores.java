@@ -38,7 +38,7 @@ public class ServletAutores extends HttpServlet {
     	 request.setCharacterEncoding("UTF-8");
     	 LinkedList<Autor> autores = bd.getAutores();
          RequestDispatcher dispatcher = request.getRequestDispatcher("/autores.jsp");
-         request.setAttribute("autores", autores);
+         request.getSession().setAttribute("autores", autores);
     	 
     	 if(request.getParameter("autor") != null){
              try {
