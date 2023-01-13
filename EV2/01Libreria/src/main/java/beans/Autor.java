@@ -15,18 +15,29 @@ public class Autor {
     private int idAutor;
     private String nombre;
     private Date fechanac;
-    private String nacionalidad;
+    private java.sql.Date fechanacSQL;
+    public java.sql.Date getFechanacSQL() {
+		return fechanacSQL;
+	}
+
+	public void setFechanacSQL(java.sql.Date fechanacSQL) {
+		this.fechanacSQL = fechanacSQL;
+	}
+
+	private String nacionalidad;
 
     public Autor(int idAutor, String nombre, Date fechanac, String nacionalidad) {
         this.idAutor = idAutor;
         this.nombre = nombre;
         this.fechanac = fechanac;
         this.nacionalidad = nacionalidad;
+        fechanacSQL = new java.sql.Date(fechanac.getTime());
     }
 
     public Autor() {
     }
 
+    
     public int getIdAutor() {
         return idAutor;
     }

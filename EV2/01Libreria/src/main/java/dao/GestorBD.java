@@ -214,13 +214,15 @@ public class GestorBD {
      
     public int insertarAutor(Autor autor){
         int id = -1;
-        String sql = "INSERT INTO libro(nombre, fechanac, nacionalidad) "
+        String sql = "INSERT INTO autor(nombre, fechanac, nacionalidad) "
                 + " VALUES(?, ?, ?)";
         try {
             Connection con = dataSource.getConnection();
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setString(1, autor.getNombre());
-            st.setDate(2, (Date) autor.getFechanac());
+            
+
+            st.setDate(2,autor.getFechanacSQL() );
             st.setString(3, autor.getNacionalidad());
             
             st.executeUpdate();
@@ -282,6 +284,31 @@ public class GestorBD {
              return false;
          }
          return true;
+
+    }
+    
+    public String getTituloLibro (int id) {
+    	String sql = "SELECT titulo FROM libro WHERE id = ?";
+    	String titulo = "";
+         
+         try {
+             Connection con = dataSource.getConnection();
+             PreparedStatement st = con.prepareStatement(sql);
+             st.setInt(1, id);
+             ResultSet rs = st.executeQuery();
+             
+             if(rs.next()){
+                 titulo = rs.getString(1);
+             }
+             
+             rs.close();
+             st.close();
+             con.close();
+         } catch (SQLException ex) {
+             System.err.println("Error en metodo getTituloLibro: " + ex);
+         }
+         
+         return titulo;
 
     }
 }

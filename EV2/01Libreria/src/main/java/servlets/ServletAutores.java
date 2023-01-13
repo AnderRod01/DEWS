@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -34,93 +35,56 @@ public class ServletAutores extends HttpServlet {
         bd = new GestorBD();
     }
     
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	 request.setCharacterEncoding("UTF-8");
-    	 LinkedList<Autor> autores = bd.getAutores();
-         RequestDispatcher dispatcher = request.getRequestDispatcher("/autores.jsp");
-         request.getSession().setAttribute("autores", autores);
-    	 
-    	 if(request.getParameter("autor") != null){
-             try {
-                 
-                 int id = Integer.parseInt(request.getParameter("autor"));
-                 LinkedList<Libro> librosAutor = bd.librosAutor(id);
-                 
-                 request.setAttribute("autor", bd.nombreAutor(id));
-                 request.setAttribute("librosAutor", librosAutor);
-             
-             } catch(NumberFormatException e){
-             
-                 request.setAttribute("error", "Autor inválido.");
-                 dispatcher.forward(request, response);
-                 return;
-             
-             }
-             
-         }
-    	 
-    	 if(request.getParameter("nuevoAutor") != null) {
-             
-             String nombre = request.getParameter("nombre");
-             String fechaNacString = request.getParameter("fechanac");
-             String nacionalidad = request.getParameter("nacionalidad");
-             
-             if(nombre == null || "".equals(nombre)){
-                 request.setAttribute("error", "El nombre no puede estar vacío.");       
-                 dispatcher.forward(request, response);  
-                 return;
-             }
-             
-             if(fechaNacString == null || "".equals(fechaNacString)){
-                 request.setAttribute("error", "La fecha de nacimiento no puede estar vacía.");
-                 dispatcher.forward(request, response);
-                 return;
-             }
-             
-             Date fecha = null;
-             
-             try {
-                 SimpleDateFormat formateador = new SimpleDateFormat("yyyy/MM/dd");
-                 fecha = formateador.parse(fechaNacString);
-             } catch (ParseException e) {
-                 request.setAttribute("error", "La fecha de nacimiento con formato incorrecto (use yyyy/MM/dd).");
-                 dispatcher.forward(request, response);
-                 return;
-             }
-             
-             if(nacionalidad == null || "".equals(nacionalidad)) {
-                 request.setAttribute("error", "La nacionalidad no puede estar vacía.");
-                 dispatcher.forward(request, response);
-                 return;
-             }
-             
-             Autor autor = new Autor(-1, nombre, fecha, nacionalidad);    
-             
-             if(bd.existeAutor(nombre)){
-                 request.setAttribute("error", "El autor ya existe.");
-                 dispatcher.forward(request, response);
-                 return;
-             }
-             
-             
-             bd.insertarAutor(autor);
-             request.setAttribute("message", "Autor creado correctamente.");
-         }
-    	 if(request.getParameter("prestar") != null) {
-             try {
-                 
-                 final int id = Integer.parseInt(request.getParameter("prestar"));                
-                 if(bd.prestarLibro(id)) {
-                     request.setAttribute("message", "El libro ha sido prestado.");
-                 } else {
-                     request.setAttribute("error", "El libro no se pudo prestar.");
-                 }
-                 
-                 
-             } catch (NumberFormatException ex) {
-                 request.setAttribute("error", "Libro inválido, el préstamo es imposible.");
-             }
-         }
+    	request.setCharacterEncoding("UTF-8");
+        if(request.getParameter("aniadir") == null){
+            doGet(request, response);
+        }else {
+        	if(request.getParameter("nombre").equals("") || 
+                    request.getParameter("fechanac").equals("") || 
+                    request.getParameter("nacionalidad").equals("")){
+                request.setAttribute("errorinsercion", "Hay que rellenar todos los datos");
+        	}else {
+        		try{
+                    //Recuperamos los datos del formulario y creamos un objeto de tipo libro.
+                    //Este objeto no tendrá ID hasta que se inserte en la base de datos
+                    String nombre = request.getParameter("nombre");
+                    
+       
+                    Date fechanac= new Date((request.getParameter("fechanac")));
+                    
+                    String nacionalidad = request.getParameter("nacionalidad"); 
+
+                    
+                    Autor autor = new Autor(1, nombre, fechanac, nacionalidad);
+                    
+                    //Si el libro ya existe no se inserta en la base de datos
+                    boolean existe = bd.existeAutor(autor.getNombre());
+                    if(existe){
+                        request.setAttribute("errorinsercion", "El autor " 
+                                + autor.getNombre() + " ya existe");
+                    }else{
+                        int id = bd.insertarAutor(autor);
+                        
+                        if(id == -1){
+                            request.setAttribute("errorinsercion", "No se ha podido insertar el autor");
+                            request.setAttribute("autorerroneo", autor);
+                        }else{
+                            //Si no ha habido ningún problema se añade el ID al 
+                            //al objeto libro y se añadae el nuevo libro a la 
+                            //seión
+                            autor.setIdAutor(id);
+                            ((ArrayList<Autor>)request.getSession().getAttribute("autores")).add(autor);
+                        }
+                    }
+                }catch(NumberFormatException e){
+                    request.setAttribute("errorinsercion", "Numero de páginas erroneo");
+                }
+        		doGet(request, response);
+        	}
+        }
+    	
     }
 	
 	/**
@@ -128,7 +92,19 @@ public class ServletAutores extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+        request.getSession().setAttribute("listaAutores", bd.getAutores());
+        
+        if (request.getParameter("autor") != null) {
+        	int autor = Integer.parseInt(request.getParameter("autor"));
+        	request.getSession().setAttribute("librosAutor", bd.librosAutor(autor));
+        }
+        if (request.getParameter("prestar") != null) {
+        	int idLibro = Integer.parseInt(request.getParameter("prestar"));
+        	bd.prestarLibro(idLibro);
+        	request.getSession().setAttribute("libroPrestado", bd.getTituloLibro(idLibro));
+        }
+        
+        request.getRequestDispatcher("autores.jsp").forward(request, response);
 	}
 
 	/**
@@ -136,7 +112,7 @@ public class ServletAutores extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		processRequest(request, response);
 	}
 
 }
