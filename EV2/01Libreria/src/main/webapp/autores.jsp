@@ -5,24 +5,6 @@
 <%@page import="beans.Libro"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%
-	/* LinkedList<Autor> autores = (LinkedList<Autor>) request.getAttribute("autores");
-	
-	if (autores == null) {
-	    response.sendRedirect(getServletContext().getContextPath() + "/ServletAutores");
-	}
-
-	pageContext.setAttribute("autores", autores);
-	
-	LinkedList<Libro> librosAutor = (LinkedList<Libro>) request.getAttribute("librosAutor");
-    String autor = (String) request.getAttribute("autor");
-    if (librosAutor == null) {
-        librosAutor = new LinkedList();
-    }
-
-    pageContext.setAttribute("librosAutor", librosAutor); */
-%>
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,25 +12,6 @@
 <title>Autores</title>
 </head>
 <body>
-<%-- <c:if test="${autores!=null}"> --%>
-<!--             <table> -->
-<!--                 <tr> -->
-<!--                     <th>Nombre</th> -->
-<!--                     <th>Fecha de nacimiento</th> -->
-<!--                     <th>Nacionalidad</th> -->
-<!--                     <th>Ver libros</th> -->
-<!--                 </tr> -->
-
-<%--                 <c:forEach items="${listaAutores}" var="autor"> --%>
-<!--                     <tr> -->
-<%--                         <td>${autor.nombre}</td> --%>
-<%--                         <td><fmt:formatDate value="${autor.fechanac}" pattern='yyyy/MM/dd'/></td> --%>
-<%--                         <td>${autor.nacionalidad}</td> --%>
-<%--                         <td><a href='<%=getServletContext().getContextPath()%>/ServletAutores?autor=${autor.idAutor}'>Ver</a></td> --%>
-<!--                     </tr> -->
-<%--                 </c:forEach> --%>
-<!--             </table> -->
-<%--         </c:if> --%>
 
 	<c:choose>
 	 	<c:when test="${listaAutores == null}">

@@ -22,6 +22,7 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import beans.Autor;
 import beans.Libro;
+import beans.Prestamo;
 
 /**
  *
@@ -311,4 +312,55 @@ public class GestorBD {
          return titulo;
 
     }
+    
+    public LinkedList<Prestamo> getPrestamos(){
+    	LinkedList<Prestamo> prestamos = new LinkedList();
+		String sql = "SELECT id, fecha, idlibro FROM prestamo";
+        Connection con;
+        try {
+            con = dataSource.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                prestamos.add(new Prestamo(rs.getInt("id"), rs.getDate("fecha"), rs.getInt("idlibro")));
+            }
+            rs.close();
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(GestorBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return prestamos;
+    }
+    
+    public LinkedList<Libro> librosPrestados() {
+        
+        String sql = "SELECT l.id, l.titulo, l.paginas, l.genero, l.idautor, l.idautor "
+        		+ "FROM libro l, prestamo p WHERE l.id = p.idlibro";
+        LinkedList<Libro> librosAutor = new LinkedList<>();
+        
+        try {
+            Connection con = dataSource.getConnection();
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                final int id = rs.getInt("id");
+                final String titulo = rs.getString("titulo");
+                final int paginas = rs.getInt("paginas");
+                final String genero = rs.getString("genero");
+                final int autor = rs.getInt("autor");
+                librosAutor.add(new Libro(id, titulo, paginas, genero, autor));
+            }
+            
+            rs.close();
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.err.println("Error en metodo librosAutor: " + ex);
+        }
+        
+        return librosAutor;
+    } 
 }
