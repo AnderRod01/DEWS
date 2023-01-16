@@ -336,8 +336,10 @@ public class GestorBD {
     
     public LinkedList<Libro> librosPrestados() {
         
-        String sql = "SELECT l.id, l.titulo, l.paginas, l.genero, l.idautor, l.idautor "
-        		+ "FROM libro l, prestamo p WHERE l.id = p.idlibro";
+        String sql = "SELECT distinct l.id, l.titulo, l.paginas, l.genero, l.idautor "
+        		+ "FROM libro l, prestamo p "
+        		+ "WHERE l.id = p.idlibro "
+        		+ "ORDER BY p.fecha desc";
         LinkedList<Libro> librosAutor = new LinkedList<>();
         
         try {
@@ -350,7 +352,7 @@ public class GestorBD {
                 final String titulo = rs.getString("titulo");
                 final int paginas = rs.getInt("paginas");
                 final String genero = rs.getString("genero");
-                final int autor = rs.getInt("autor");
+                final int autor = rs.getInt("idautor");
                 librosAutor.add(new Libro(id, titulo, paginas, genero, autor));
             }
             
@@ -362,5 +364,29 @@ public class GestorBD {
         }
         
         return librosAutor;
-    } 
+    }
+    
+    public java.util.Date fechaPrestamo (int idLibro) {
+    	String sql = "select distinct fecha from prestamo where idlibro = ? order by fecha desc";
+    	java.util.Date fecha = null;
+         
+         try {
+             Connection con = dataSource.getConnection();
+             PreparedStatement st = con.prepareStatement(sql);
+             st.setInt(1, idLibro);
+             ResultSet rs = st.executeQuery();
+             
+             if(rs.next()){
+                 fecha = (java.util.Date) rs.getDate(1);
+             }
+             
+             rs.close();
+             st.close();
+             con.close();
+         } catch (SQLException ex) {
+             System.err.println("Error en metodo fechaPrestamo: " + ex);
+         }
+         
+         return fecha;
+    }
 }

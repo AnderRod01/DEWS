@@ -6,24 +6,33 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>DEVOLUCIONES</title>
 </head>
 <body>
 	<c:choose>
-	 	<c:when test="${listaPrestamos == null}">
+	 	<c:when test="${librosPrestados == null}">
             <jsp:forward page="ServletDevolver"/>
         </c:when>
-        <c:when test="${listaPrestamos > 0 }">
+        <c:when test="${librosPrestados.size() > 0 }">
         	<h1>Lista de Prestamos</h1>
-        	<c:forEach items="${listaPretamos }" var="prestamo" varStatus="cont">
+        	<table>
+        	<c:forEach items="${librosPrestados }" var="libro" varStatus="cont">
         		<tr>
         			<td><c:out value="${cont.count }"/>.-</td>
-        			<td>${prestamo.titulo }
+        			<td>${libro.titulo }, <c:out value="${mapaDiasPrestados[libro.idLibro] }"/> dias prestados</td>
+        			<c:choose>
+        				<c:when test="">
+        					<td><a href='<%=getServletContext().getContextPath()%>/ServletDevoluciones?libroDevuelto=${libro.idLibro}'>MARCAR DEVOLUCION</a></td>
+        				</c:when>
+        				<c:otherwise>
+        					
+        				</c:otherwise>
+        			</c:choose>
         		</tr>
         	</c:forEach>
+        	</table>
+        	<p><a href="">GRABAR DEVOLUCIONES</a> ( libros)</p>
         </c:when>
 	</c:choose>
-
-
 </body>
 </html>

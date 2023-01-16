@@ -37,8 +37,12 @@
         </form>
         <p>${errorinsercion}</p>
         
-         <div>
-            <a href='<%= getServletContext().getContextPath()%>/autores.jsp'>Ver autores</a>
-        </div>
+         <p>
+            <a href='<%= getServletContext().getContextPath()%>/autores.jsp'>Ver Autores</a>
+        </p>
+        <p>
+        	<a href='<%= getServletContext().getContextPath()%>/prestamos.jsp'>Ver Devoluciones</a>
+        </p>
+        
     </body>
 </html>
