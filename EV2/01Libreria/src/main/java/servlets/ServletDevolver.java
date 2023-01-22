@@ -51,8 +51,28 @@ public class ServletDevolver extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	request.setCharacterEncoding("UTF-8");
-    	if ()
+    	
     	doGet(request, response);
+      	ArrayList <Integer> devoluciones = new ArrayList<Integer>();
+    	
+    	LinkedList<Prestamo> prestamos = bd.getPrestamos();
+  
+    	Integer idLibroDevuelto = Integer.parseInt(request.getParameter("devolver"));
+    	Integer idLibroPrestado = Integer.parseInt(request.getParameter("revertirDevolucion"));
+    	
+    	if (idLibroDevuelto != null) {
+    		if (!devoluciones.contains(idLibroPrestado))
+    			devoluciones.add(idLibroPrestado);
+    	}
+    	else {
+    		if (idLibroPrestado != null) {
+    			devoluciones.remove(idLibroPrestado);
+    		}
+    	}
+    		
+    	request.getSession().setAttribute("devoluciones", devoluciones);
+    	request.getRequestDispatcher("prestamos.jsp").forward(request, response);
+    	
     }
     
     
@@ -64,7 +84,7 @@ public class ServletDevolver extends HttpServlet {
 		request.getSession().setAttribute("librosPrestados", librosPrestados);
 		request.getSession().setAttribute("mapaDiasPrestados", mapaDiasPrestados(librosPrestados));
 		
-		if (request.getParameter("libroDevuelto") != null) {
+		if (request.getParameter("devolver") != null) {
 			
 		}
 		

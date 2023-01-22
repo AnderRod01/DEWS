@@ -9,10 +9,15 @@
 <title>DEVOLUCIONES</title>
 </head>
 <body>
+
+	 <c:if test="${librosPrestados == null}  ">
+        	<jsp:forward page="ServletDevolver"/>
+     </c:if>
+     <c:if test="${devoluciones == null}">
+        	<jsp:forward page="ServletDevolver"/>
+     </c:if>
+
 	<c:choose>
-	 	<c:when test="${librosPrestados == null}">
-            <jsp:forward page="ServletDevolver"/>
-        </c:when>
         <c:when test="${librosPrestados.size() > 0 }">
         	<h1>Lista de Prestamos</h1>
         	<table>
@@ -21,11 +26,11 @@
         			<td><c:out value="${cont.count }"/>.-</td>
         			<td>${libro.titulo }, <c:out value="${mapaDiasPrestados[libro.idLibro] }"/> dias prestados</td>
         			<c:choose>
-        				<c:when test="">
-        					<td><a href='<%=getServletContext().getContextPath()%>/ServletDevoluciones?libroDevuelto=${libro.idLibro}'>MARCAR DEVOLUCION</a></td>
+        				<c:when test="${devoluciones.contains(libro.idLibro)}">
+        					<td><a href='<%=getServletContext().getContextPath()%>/ServletDevolver?revertirDevolucion=${libro.idLibro}'>REVERTIR DEVOLUCION</a></td>
         				</c:when>
         				<c:otherwise>
-        					
+        					<td><a href='<%=getServletContext().getContextPath()%>/ServletDevolver?devolver=${libro.idLibro}'>MARCAR DEVOLUCION</a></td>
         				</c:otherwise>
         			</c:choose>
         		</tr>

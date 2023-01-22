@@ -7,11 +7,14 @@ public class Prestamo {
 	private Date fecha;
 	
 	
+	
 	public Prestamo(int id,Date fecha,int idLibro) {
 		this.id = id;
 		this.idLibro = idLibro;
 		this.fecha = fecha;
 	}
+	
+	
 	
 	
 	public int getIdLibro() {
