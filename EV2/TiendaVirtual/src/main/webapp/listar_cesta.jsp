@@ -10,7 +10,6 @@
 <body>
 	<form action="ServletUpdateLineaPedido" method="post">
 		<table>
-			
 			<tr>
 				<th>Id</th>
 				<th>Nombre</th>
@@ -18,17 +17,16 @@
 				<th>Cantidad</th>
 				<th>Añadir</th>
 			</tr>
-			<c:forEach items="${listaItems}" var="item">
+			<c:forEach items="${carrocompra}" var="lineapedido">
 				<tr>
-					<td>${item.key}</td>
-					<td>${item.value.nombre}</td>
-					<td>${item.value.precio}</td>
+					<td>${lineapedido.item.id}</td>
+					<td>${lineapedido.item.nombre}</td>
+					<td>${lineapedido.item.precio}</td>
 					<td><input type="number" name="txtCantidad" value="0"></td>
 					<td><button type="submit" value="${item.key}" name="aniadir">Añadir al carro</button></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</form>
-	
 </body>
 </html>
