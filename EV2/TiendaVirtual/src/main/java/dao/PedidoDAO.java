@@ -40,7 +40,7 @@ public class PedidoDAO {
 		return items;
 	}
 	
-	public Item buscaItemPorId (int idItem) {
+	public static Item buscaItemPorId (int idItem) {
 		String sql = "SELECT * FROM items where id=?";
         try {
         	Connection con = ConnectionPool.getConnection();
@@ -60,7 +60,7 @@ public class PedidoDAO {
 		return null;
 	}
 	
-	public void guardaPedido (Pedido p) {
+	public static void guardaPedido (Pedido p) {
 
 		String sql = "INSERT INTO pedidos (id, total, fecha, idcliente) VALUES (?, ?, ?, ?)";
 		 try {
@@ -84,7 +84,7 @@ public class PedidoDAO {
 				
 	}
 	
-	public void guardaLineaPedido (LineaPedido lp) {
+	public static void guardaLineaPedido (LineaPedido lp) {
 
 		String sql = "INSERT INTO lineaspedido (id, cantidad, idpedido, iditem) VALUES (?, ?, ?, ?)";
 		 try {

@@ -1,19 +1,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>LAMINAS</title>
+<title>Cesta</title>
 </head>
 <body>
-	<h1>LAMINAS</h1>
-	<c:if test="${listaItems == null}">
-		<jsp:forward page="ServletAgregarLineaPedido"></jsp:forward>
-	</c:if>
-	<form action="ServletAgregarLineaPedido" method="post">
+	<form action="ServletUpdateLineaPedido" method="post">
 		<table>
 			
 			<tr>
@@ -34,15 +29,6 @@
 			</c:forEach>
 		</table>
 	</form>
-
-	<form action="listar_cesta.jsp">
-		<input type="submit" value="Ver cesta" />
-	</form>
-	<form action="pedir.jsp">
-		<input type="submit" value="Hacer pedido" />
-	</form>
-	<form action="ServletListarPedidos">
-		<input type="submit" value="Mis pedidos" />
-	</form>
+	
 </body>
 </html>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.CarroCompra;
 import beans.Item;
+import beans.LineaPedido;
 import conex.ConnectionPool;
 import dao.PedidoDAO;
 
@@ -31,10 +32,14 @@ public class ServletAgregarLineaPedido extends HttpServlet {
 			request.getSession().setAttribute("carrocompra", new CarroCompra());
 		}
 		
-		
-		
 		if (request.getParameter("aniadir") != null) {
+			Item item = PedidoDAO.buscaItemPorId(Integer.parseInt(request.getParameter("aniadir")));
+			LineaPedido  lp = new LineaPedido();
+			lp.setItem(item);
+			lp.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
 			
+			CarroCompra cp = (CarroCompra) request.getSession().getAttribute("carrocompra");
+			cp.aniadeLinea(lp);
 		}
 		
 		request.getRequestDispatcher("tienda.jsp").forward(request, response);
