@@ -16,7 +16,7 @@
 			</tr>
 			<tr>
 				<td><label>Password:</label></td>
-				<td><input name="txtPass" type="password"></td>
+				<td><input name="txtPwd" type="password"></td>
 			</tr>
 			<tr>
 				<td><label>Domicilio:</label></td>

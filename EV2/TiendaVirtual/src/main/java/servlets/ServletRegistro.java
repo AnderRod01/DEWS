@@ -25,6 +25,9 @@ public class ServletRegistro extends HttpServlet {
 	    }	
 	
 	 protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 request.getSession().setAttribute("mensaje", "");
+		 request.getSession().setAttribute("mensajeSuccess", "");
+		 
 		 String user = request.getParameter("txtUser");
 		 String pwd = request.getParameter("txtPwd");
 		 String domicilio = request.getParameter("txtDomicilio");
@@ -34,9 +37,16 @@ public class ServletRegistro extends HttpServlet {
 		 
 		 
 		 if (!ClientesDAO.buscaCliente(user)) {
-			 ClientesDAO.guardarCliente(new Cliente(0, user, pwd, domicilio, cp, tlf, email));
-			 request.getSession().setAttribute("mensajeSuccess", "Usuario registrado correctamente");
-			 request.getRequestDispatcher("login.jsp").forward(request, response);
+			 
+			 
+			 if (ClientesDAO.guardarCliente(new Cliente(0, user, pwd, domicilio, cp, tlf, email))) {
+				 request.getSession().setAttribute("mensajeSuccess", "Usuario registrado correctamente");
+				 request.getRequestDispatcher("login.jsp").forward(request, response);
+			 }else {
+				 request.getSession().setAttribute("mensaje", "Datos no válidos");
+				 request.getRequestDispatcher("registro.jsp").forward(request, response);
+			 }
+			
 		 }else {
 			 request.getSession().setAttribute("mensaje", "Usuario existente");
 			 request.getRequestDispatcher("registro.jsp").forward(request, response);

@@ -13,25 +13,27 @@
 	<c:if test="${listaItems == null}">
 		<jsp:forward page="ServletAgregarLineaPedido"></jsp:forward>
 	</c:if>
-
-	<table>
-		<tr>
-			<th>Id</th>
-			<th>Nombre</th>
-			<th>Precio</th>
-			<th>Cantidad</th>
-			<th>Añadir</th>
-		</tr>
-		<c:forEach items="listaItems" var="item">
+	<form action="ServletAgregarLineaPedido" method="post">
+		<table>
+			
 			<tr>
-				<td>${item.id}</td>
-				<td>${item.nombre}</td>
-				<td>${item.precio}</td>
-				<td>cantidad</td>
-				<td><input type="submit" value="Añadir al carro" name="aniadir"></td>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Cantidad</th>
+				<th>Añadir</th>
 			</tr>
-		</c:forEach>
-	</table>
+			<c:forEach items="${listaItems}" var="item">
+				<tr>
+					<td>${item.key}</td>
+					<td>${item.value.nombre}</td>
+					<td>${item.value.precio}</td>
+					<td><input type="number" name="txtCantidad" value="0"></td>
+					<td><input type="submit" value="Añadir al carro" name="aniadir"></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</form>
 
 	<form action="listar_cesta.jsp">
 		<input type="submit" value="Ver cesta" />

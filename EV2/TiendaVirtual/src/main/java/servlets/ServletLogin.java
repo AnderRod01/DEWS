@@ -35,16 +35,16 @@ public class ServletLogin extends HttpServlet {
 		
 		session = request.getSession(true);
 		
-		
+		request.getSession().setAttribute("mensaje", "");
+		request.getSession().setAttribute("mensajeSuccess", "");
 		boolean userValido = false;
 		
 		String user = (String) request.getParameter("txtUser");
 		
 		String pwd = (String) request.getParameter("txtPwd");
 		
-		ClientesDAO clientesDAO = new ClientesDAO();
 		
-		Cliente cliente = clientesDAO.buscaCliente(user, pwd);
+		Cliente cliente = ClientesDAO.buscaCliente(user, pwd);
 		
 		if (cliente != null) {
 			userValido = true;

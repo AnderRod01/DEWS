@@ -1,12 +1,18 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.CarroCompra;
+import beans.Item;
+import conex.ConnectionPool;
 import dao.PedidoDAO;
 
 /**
@@ -16,8 +22,22 @@ import dao.PedidoDAO;
 public class ServletAgregarLineaPedido extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void processRequest  (HttpServletRequest request, HttpServletResponse response) {
+	protected void processRequest  (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Map<Integer, Item> listaItems = PedidoDAO.todosItems();
+		request.getSession().setAttribute("listaItems", listaItems);
+		
+		if(request.getSession().getAttribute("carrocompra") == null) {
+			request.getSession().setAttribute("carrocompra", new CarroCompra());
+		}
+		
+		
+		
+		if (request.getParameter("aniadir") != null) {
+			
+		}
+		
+		request.getRequestDispatcher("tienda.jsp").forward(request, response);
 	}
 
 	/**

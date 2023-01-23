@@ -77,21 +77,17 @@ public class ClientesDAO {
             st.setString(6, cliente.getTelefono());
             st.setString(7, cliente.getEmail());
             
-            st.executeUpdate();
+            st.execute();
             
-            ResultSet rs = st.getGeneratedKeys();
-            if(rs.next()){
-                id = rs.getInt(1);
-            }
             
-            rs.close();
             st.close();
             con.close();
+            return true;
         } catch (SQLException ex) {
         	System.err.println(ex.getMessage());
         }
 	        
-		return true;
+		return false;
 	}
 	
 	public static boolean actualizarCliente(Cliente cliente)

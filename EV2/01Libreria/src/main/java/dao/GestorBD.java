@@ -390,5 +390,5 @@ public class GestorBD {
          return fecha;
     }
     
-    public ArrayList<Prestamo> prestamosDeLibro 
+    
 }

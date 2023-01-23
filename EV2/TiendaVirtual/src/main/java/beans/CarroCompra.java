@@ -42,7 +42,8 @@ public class CarroCompra {
 		
 		Set<Integer> claves = carro.keySet();
 		for (int clave : claves) {
-			total += carro.get(clave).getItem().getPrecio();
+			int cantidad = carro.get(clave).getCantidad();
+			total += (carro.get(clave).getItem().getPrecio() * cantidad);
 		}
 		
 		return total;
